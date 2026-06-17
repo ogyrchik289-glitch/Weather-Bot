@@ -16,6 +16,11 @@ class Registration(StatesGroup):
     waiting_for_date = State()
     city_d = State()
     date_d = State()
+    
+
+@handler_router.message(F.tetx.contains("weather"))
+async def get_weather_now(message: Message):
+    await message.answer(get_weather(city=message[1]))
 
 @handler_router.message(Command("start"))
 async def start_handler(message: Message):
