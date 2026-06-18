@@ -25,7 +25,7 @@ async def get_weather_now(message: Message):
         await message.answer("Пожалуйста введите название грода после команды. Пример: '/weather Ташкент' ")
         return
     city = data[1]
-    await message.answer(get_weather_now(city))
+    await message.answer(get_weather(city))
 
 @handler_router.message(Command("start"))
 async def start_handler(message: Message):
