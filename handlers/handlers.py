@@ -20,7 +20,12 @@ class Registration(StatesGroup):
 
 @handler_router.message(F.tetx.contains("weather"))
 async def get_weather_now(message: Message):
-    await message.answer(get_weather(city=message[1]))
+    data = message.text.split(" ")
+    if len(data) == 1:
+        await message.answer("Пожалуйста введите название грода после команды. Пример: '/weather Ташкент' ")
+        return
+    city = data[1]
+    await message.answer(get_weather_now(city))
 
 @handler_router.message(Command("start"))
 async def start_handler(message: Message):
